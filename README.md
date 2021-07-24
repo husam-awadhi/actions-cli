@@ -1,6 +1,6 @@
 # actions-cli
 
-simple cli tool to with a modular design
+simple cli tool with a plugin design
 
 ## running the action tool
 
