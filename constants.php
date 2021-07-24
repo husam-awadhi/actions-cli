@@ -3,7 +3,7 @@
 /**
  * Application constants.
  *
- * @package  waves-cli
+ * @package  actions-cli
  * @author   Husam A.
  */
 
