@@ -1,0 +1,19 @@
+{
+    "name": "husam-awadhi/actions-cli",
+    "type": "tool",
+    "description": "simple cli tool to with a modular design",
+    "config": {
+        "env": {
+            "app": "Actions",
+            "version": "1.0.0",
+            "date": "24 July 2021"
+        },
+        "prod": false,
+        "debug": true,
+        "log": true,
+        "cli": {
+            "color": true,
+            "style": true
+        }
+    }
+}

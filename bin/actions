@@ -1,0 +1,44 @@
+#!/usr/bin/php
+<?php
+/**
+ * Basic string manipulation tool
+ *
+ * @package  actions-cli
+ * @author   Husam A.
+ */
+
+declare(strict_types=1);
+
+
+if (isset($_SERVER['REQUEST_METHOD'])) die('Access denied. please use cli to run');
+
+define('APP_START', microtime(true));
+
+/*
+|--------------------------------------------------------------------------
+| Load Constants
+|--------------------------------------------------------------------------
+|
+| Default values that can be used throughout the app
+| a way to make our life easier.
+|
+*/
+require dirname(__DIR__) . '/constants.php';
+
+use App\Config;
+use App\Helpers;
+use App\Write;
+
+try {
+    if (Config::getValue('debug') != true) error_reporting(0);
+    
+    Helpers::log("command: " . array_shift($argv));
+    Helpers::log("arguments: " . implode(" || ", $argv));
+    // run
+    $actions = new App\Actions\Actions($argv);
+    $actions->addPlugin(new App\Actions\Plugins\Help()); // -h display help message
+    $actions->processCommand();
+} catch (\Exception $e) {
+    Write::echo("ERROR: {$e->getMessage()}", Write::BOLD, Write::RED);
+}
+fwrite(STDOUT, "\e[0m"); //reset any formatting
